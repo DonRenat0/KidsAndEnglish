@@ -4,6 +4,8 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
+//  1.  leer bbdd
+//  2.  Escribir bbdd?
 
 class SQLite(
     context: Context?,
@@ -16,6 +18,15 @@ class SQLite(
         //real a decimal
         db?.execSQL("create table player (idPlayer INTEGER primary key AUTOINCREMENT, name TEXT, points INTEGER)")
 
+    }
+
+    //  1.
+    override fun getReadableDatabase(): SQLiteDatabase {
+        return super.getReadableDatabase()
+    }
+    //  2.
+    override fun getWritableDatabase(): SQLiteDatabase {
+        return super.getWritableDatabase()
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

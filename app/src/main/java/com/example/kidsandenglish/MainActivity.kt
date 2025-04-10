@@ -15,10 +15,10 @@ private lateinit var btnSelect: Button
 
 
     @SuppressLint("SuspiciousIndentation")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
      btnGoToCreate=findViewById(R.id.btnGoToCreate)
         btnGoToCreate.setOnClickListener{
@@ -38,7 +38,5 @@ private lateinit var btnSelect: Button
             startActivity(intent)
         }
     }
-
-
 
 }

@@ -9,6 +9,27 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
+//  1.  El jugador deberia ver sus puntos in game
+
+//  En este kt veras el problema que tiene el resto de niveles
+
+//  2.  REDUNDANCIA VerificarRespuesta, SumarPuntos y ObtenerPuntosActuales
+//  Deberian estar en una clase aparte
+
+//  VerificarRespuesta:
+//  crear otra tabla con identificador y la respuesta a la imagen
+//  pasar el parametro de la entrada de respuesta y segun la cantidad de puntos te de el nombre de la
+//  imagen para comparar con la entrada.
+//
+//  Sumarpunto: Añade lo que esta en ObtenerPunto a esta funcion o mantenlos separados si lo haces
+//  funcional para todas los niveles
+//
+//  database Inspector : View > Tool windows > App Inspector > Database Inspector
+// 20 veces mejor probar en movil
+
+//  In game debes matar el intent anterior o sino el player puede sumar puntos sin fin
+//
+
 class lvl1page1 : AppCompatActivity() {
     private var nombreJugador: String? = null
     private lateinit var btnCheck11:Button
@@ -18,6 +39,7 @@ class lvl1page1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.lvl1page1)
 
+        //  1.
         nombreJugador = intent.getStringExtra("nombreJugador")
         btnCheck11= findViewById(R.id.btnCheck11)
         btnCheck11.setOnClickListener {
@@ -29,7 +51,7 @@ class lvl1page1 : AppCompatActivity() {
             startActivity(intent)
         }
     }
-    /////////
+
     private fun verificarRespuesta() {
         val editText: EditText = findViewById(R.id.editText11)
         val respuestaUsuario = editText.text.toString().trim().toLowerCase()
