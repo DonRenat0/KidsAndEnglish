@@ -9,6 +9,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
+//  Crear una funcion para que en cada intent se pueda visualizar la cantidad de puntos
+
 //  1.  El jugador deberia ver sus puntos in game
 
 //  En este kt veras el problema que tiene el resto de niveles
@@ -32,6 +34,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class lvl1page1 : AppCompatActivity() {
     private var nombreJugador: String? = null
+    private var puntos: Int? = null
     private lateinit var btnCheck11:Button
     private lateinit var btnSvExit:Button
 

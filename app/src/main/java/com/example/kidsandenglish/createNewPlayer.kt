@@ -49,6 +49,7 @@ class createNewPlayer : AppCompatActivity() {
 
                     val intent = Intent(this, lvl1page1::class.java)
                     intent.putExtra("nombreJugador", name)
+
                     startActivity(intent)
 
                     baseDeDatos.close()
