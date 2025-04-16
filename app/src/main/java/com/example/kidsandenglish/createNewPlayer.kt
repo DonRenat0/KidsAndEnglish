@@ -33,13 +33,14 @@ class createNewPlayer : AppCompatActivity() {
 
             var baseDeDatos = conexion.writableDatabase
             var name = txtNewPlayer.text.toString()
+            var points = 1
 
             if (name.isNotEmpty()){
                 if (!existeJugador(name, baseDeDatos)) {
 
                     var registro = ContentValues()
                     registro.put("name", name)
-                    registro.put("points", 0)
+                    registro.put("points", points)
                     baseDeDatos.insert("player", null, registro)
 
                     txtNewPlayer.setText("")
@@ -47,6 +48,8 @@ class createNewPlayer : AppCompatActivity() {
 
                     val intent = Intent(this, lvl1page1::class.java)
                     intent.putExtra("nombreJugador", name)
+                    intent.putExtra("puntosJugador", points)
+
 
                     startActivity(intent)
 

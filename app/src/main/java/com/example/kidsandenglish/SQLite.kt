@@ -34,10 +34,24 @@ class SQLite(
     }
 
     //  Comprobar si es la respuesta correcta PASANDOLE LA RESPUESTA
-      fun esCorrecta(nombreJugador: String?) {
+
+      fun esRegistrada(puntosJugador: Int?, strRespuestaUsuario: String?): Boolean {
+
+          if (puntosJugador == null || strRespuestaUsuario.isNullOrBlank()) return false
 
           val db = this.readableDatabase
-        //  val cursor = db.rawQuery("SELECT respuesta FROM respuestas WHERE respuesta LIKE ")
+
+          val cursor = db.rawQuery(
+              "SELECT 1 FROM respuestas WHERE puntos_necesarios = ? AND LOWER(respuesta) = ? LIMIT 1",
+              arrayOf(puntosJugador.toString(), strRespuestaUsuario.lowercase())
+          )
+
+          val existe = cursor.moveToFirst()
+
+          cursor.close()
+          db.close()
+
+          return existe
       }
 
     // Inserta datos en tabla respuestas

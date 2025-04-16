@@ -39,17 +39,25 @@ import androidx.appcompat.app.AppCompatActivity
 class lvl1page1 : AppCompatActivity() {
    // private var nombreJugador: String? = null
 
-    private var puntos: Int? = null
+   // private var puntos: Int? = null
     private lateinit var btnCheck11:Button
     private lateinit var btnSvExit:Button
-    private var respuestaUsuario = findViewById<EditText>(R.id.editText11)
+   // private var respuestaUsuario = findViewById<EditText>(R.id.editText11)
+    private lateinit var txtRespuestaUsuario: EditText
+    private var nombreJugador: String? = null
+    private var puntosJugador: Int? = null
+   private var esCorrecta: Boolean? = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.lvl1page1)
 
         //  1.
-        val nombreJugador = intent.getStringExtra("nombreJugador")
+        txtRespuestaUsuario = findViewById(R.id.editText11)
+        nombreJugador = intent.getStringExtra("nombreJugador")
+        puntosJugador = intent.getIntExtra("puntosJugador", 0)
+
 
         //  el comando que mostrara los puntos y el parametro para saberlos
         mostrarPuntosEn(R.id.txtVwPoints, nombreJugador)
@@ -59,7 +67,14 @@ class lvl1page1 : AppCompatActivity() {
         btnCheck11= findViewById(R.id.btnCheck11)
         btnCheck11.setOnClickListener {
 
-            verificarRespuesta(respuestaUsuario.toString().trim().toLowerCase())
+            var strRespuestaUsuario =  txtRespuestaUsuario.text.toString().trim().toLowerCase()
+             esCorrecta = verificarRespuesta(puntosJugador, strRespuestaUsuario)
+
+            if(esCorrecta == true){
+                    Toast.makeText(this, "Correct! You got 1 point", Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this, "Invalid answer, it starts with ti...", Toast.LENGTH_LONG).show()
+            }
         }
         btnSvExit= findViewById(R.id.btnSvExit12)
         btnSvExit.setOnClickListener{
