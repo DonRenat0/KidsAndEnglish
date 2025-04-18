@@ -3,19 +3,17 @@ package com.example.kidsandenglish
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-//  Crear una funcion para que en cada intent se pueda visualizar la cantidad de puntos
 
-//  1.  El jugador deberia ver sus puntos in game
 
 //  En este kt veras el problema que tiene el resto de niveles
 
-//  2.  REDUNDANCIA VerificarRespuesta, SumarPuntos y ObtenerPuntosActuales
-//  Deberian estar en una clase aparte
+
 
 //  VerificarRespuesta:
 //  crear otra tabla con identificador y la respuesta a la imagen
@@ -24,7 +22,7 @@ import androidx.appcompat.app.AppCompatActivity
 //
 //  Sumarpunto: Añade lo que esta en ObtenerPunto a esta funcion o mantenlos separados si lo haces
 //  funcional para todas los niveles
-//
+
 //  database Inspector : View > Tool windows > App Inspector > Database Inspector
 // 20 veces mejor probar en movil
 
@@ -33,8 +31,6 @@ import androidx.appcompat.app.AppCompatActivity
 //  ME QUEDE en
 //  La TABLA con insercion de datos preocupa que sea una funcion, solo queremos que se ejecute una vez,incluso si alguien repite el juego
 //  tocaria hacer la logica para poner la imagen en cada xml segun se avanza y hacer dinamicas las funciones que estan en todos los niveles
-
-//  Con el nombre del jugador hacemos la llamada a la bbdd obtenemos los puntos y obtenemos la respuesta de la tabla respuestas
 
 class lvl1page1 : AppCompatActivity() {
    // private var nombreJugador: String? = null
@@ -53,16 +49,13 @@ class lvl1page1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.lvl1page1)
 
-        //  1.
         txtRespuestaUsuario = findViewById(R.id.editText11)
         nombreJugador = intent.getStringExtra("nombreJugador")
         puntosJugador = intent.getIntExtra("puntosJugador", 0)
 
 
-        //  el comando que mostrara los puntos y el parametro para saberlos
+        //  Muestra puntos en XML
         mostrarPuntosEn(R.id.txtVwPoints, nombreJugador)
-
-
 
         btnCheck11= findViewById(R.id.btnCheck11)
         btnCheck11.setOnClickListener {
@@ -72,8 +65,11 @@ class lvl1page1 : AppCompatActivity() {
 
             if(esCorrecta == true){
                     Toast.makeText(this, "Correct! You got 1 point", Toast.LENGTH_LONG).show()
+                    sumarPunto(nombreJugador)
+                    Log.d("Miapp", "$nombreJugador")
             }else{
-                Toast.makeText(this, "Invalid answer, it starts with ti...", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Invalid answer, \nhint: it starts with ti...", Toast.LENGTH_LONG).show()
+                Log.d("Miapp", "$nombreJugador")
             }
         }
         btnSvExit= findViewById(R.id.btnSvExit12)
@@ -84,11 +80,10 @@ class lvl1page1 : AppCompatActivity() {
     }
 
 
-
-
-    private fun sumarPunto() {
+     /* private fun sumarPunto() {
         val conexion = SQLite(this, "player", null, 1)
-        val baseDeDatos = conexion.writableDatabase
+        val writebbdd = conexion.writableDatabase
+        val readbbdd = conexion.readableDatabase
         //txtNewPlayer=findViewById(R.id.txtNewPlayer)
         //nombreJugador = intent.getStringExtra("nombreJugador")
        // val name = nombreJugador
@@ -97,9 +92,9 @@ class lvl1page1 : AppCompatActivity() {
         // Actualiza la columna "points" en la base de datos
      //   baseDeDatos.update("player", contentValues, "name=?", arrayOf(nombreJugador))
         baseDeDatos.close()
-    }
+    }*/
 
-    private fun obtenerPuntosActuales(): Int {
+    /*private fun obtenerPuntosActuales(): Int {
         val conexion = SQLite(this, "player", null, 1)
         val baseDeDatos = conexion.readableDatabase
       //  nombreJugador = intent.getStringExtra("nombreJugador")
@@ -113,5 +108,5 @@ class lvl1page1 : AppCompatActivity() {
         cursor.close()*/
         baseDeDatos.close()
         return puntos
-    }
+    }*/
 }

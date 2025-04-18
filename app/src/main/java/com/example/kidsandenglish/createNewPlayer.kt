@@ -33,8 +33,7 @@ class createNewPlayer : AppCompatActivity() {
 
             var baseDeDatos = conexion.writableDatabase
             var name = txtNewPlayer.text.toString()
-            var points = 1
-
+            var points = 0
             if (name.isNotEmpty()){
                 if (!existeJugador(name, baseDeDatos)) {
 

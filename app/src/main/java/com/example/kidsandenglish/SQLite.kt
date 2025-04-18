@@ -21,7 +21,7 @@ class SQLite(
 
     //  Mostrar puntos en cada XML
 
-    fun obtenerPuntos(nombreJugador: String?): Int {
+    fun mostrarPuntosSQLite(nombreJugador: String?): Int {
         val db = this.readableDatabase
         val cursor = db.rawQuery("SELECT points FROM player WHERE name = ?", arrayOf(nombreJugador))
         var puntos = 0
