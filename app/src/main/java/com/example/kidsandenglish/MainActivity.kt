@@ -12,13 +12,18 @@ private lateinit var btnGoToCreate: Button
 private lateinit var btnRanking: Button
 private lateinit var btnSelect: Button
 
+//  Situación Declaracion de variables
 
+    //-   No para tipos primitivos. Vas a inicializar después pero estás seguro que se usará antes de acceder	lateinit var
+    //-   El valor puede ser nulo o no estar aún	var nombre: Tipo? = null
+    //-   Tienes un valor inicial claro	var puntos: Int = 0
+    //-   No se va a reasignar	val nombre: String = "Juan"
 
     @SuppressLint("SuspiciousIndentation")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
      btnGoToCreate=findViewById(R.id.btnGoToCreate)
         btnGoToCreate.setOnClickListener{
@@ -38,7 +43,5 @@ private lateinit var btnSelect: Button
             startActivity(intent)
         }
     }
-
-
 
 }

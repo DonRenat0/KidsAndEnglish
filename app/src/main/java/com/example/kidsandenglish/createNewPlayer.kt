@@ -4,19 +4,20 @@ import android.content.ContentValues
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
+
+//  1.  Se debe hacer una clase de conexion para que no se repita en cada ClickListener
+
+//  2.  Llamada a la bbdd que compare la sql con cada registro de nombre(name en sqlite)
 
 class createNewPlayer : AppCompatActivity() {
-    //var conexion = SQLite(requireContext(), "player", null, 1)
 
+    //var conexion = SQLite(requireContext(), "player", null, 1)
     private lateinit var txtNewPlayer: EditText
     private lateinit var btnNewPlayer: Button
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,24 +27,29 @@ class createNewPlayer : AppCompatActivity() {
         btnNewPlayer=findViewById(R.id.btnNewPlayer)
 
         btnNewPlayer.setOnClickListener{
-            var conexion= SQLite(this, "player", null, 1)
-            var baseDeDatos=conexion.writableDatabase
 
-            var name=txtNewPlayer?.text.toString()
+            //  1.
+            var conexion = SQLite(this, "player", null, 1)
 
+            var baseDeDatos = conexion.writableDatabase
+            var name = txtNewPlayer.text.toString()
+            var points = 0
             if (name.isNotEmpty()){
                 if (!existeJugador(name, baseDeDatos)) {
+
                     var registro = ContentValues()
                     registro.put("name", name)
-                    registro.put("points", 0)
-
+                    registro.put("points", points)
                     baseDeDatos.insert("player", null, registro)
 
-                    txtNewPlayer?.setText("")
+                    txtNewPlayer.setText("")
                     Toast.makeText(this, "New Player Created", Toast.LENGTH_LONG).show()
 
                     val intent = Intent(this, lvl1page1::class.java)
                     intent.putExtra("nombreJugador", name)
+                    intent.putExtra("puntosJugador", points)
+
+
                     startActivity(intent)
 
                     baseDeDatos.close()
@@ -57,15 +63,16 @@ class createNewPlayer : AppCompatActivity() {
 
 
         }
-        }
+    }
 
 
 
     // Función para verificar si un jugador ya existe con el mismo nombre
     private fun existeJugador(nombre: String, db: SQLiteDatabase): Boolean {
         val sql = "SELECT * FROM player WHERE name = ?"
-        val resultado = db.rawQuery(sql, arrayOf(nombre))
 
+        //  2.
+        val resultado = db.rawQuery(sql, arrayOf(nombre))
         val existe = resultado.count > 0
         resultado.close()
 

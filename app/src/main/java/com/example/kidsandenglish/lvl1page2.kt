@@ -1,6 +1,5 @@
 package com.example.kidsandenglish
 
-import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
