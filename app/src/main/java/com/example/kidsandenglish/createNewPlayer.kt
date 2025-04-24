@@ -52,6 +52,10 @@ class createNewPlayer : AppCompatActivity() {
 
                     startActivity(intent)
 
+                    // REEMPLAZAR LA ANTERIOR LOGICA EN TODAS LAS CLASES
+                    // Y HACER LA LLAMADA A NEXTPAGE()
+                    nextPage()
+
                     baseDeDatos.close()
 
                 } else {

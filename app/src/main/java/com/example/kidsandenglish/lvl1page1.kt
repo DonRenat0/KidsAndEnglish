@@ -66,7 +66,6 @@ class lvl1page1 : AppCompatActivity() {
             if(esCorrecta == true){
                     Toast.makeText(this, "Correct! You got 1 point", Toast.LENGTH_LONG).show()
                     sumarPunto(nombreJugador)
-
                     Log.d("Miapp", "$nombreJugador")
             }else{
                 Toast.makeText(this, "Invalid answer, \nhint: it starts with ti...", Toast.LENGTH_LONG).show()

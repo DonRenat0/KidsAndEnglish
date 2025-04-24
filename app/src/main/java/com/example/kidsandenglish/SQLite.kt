@@ -15,12 +15,7 @@ class SQLite(
 
     override fun onCreate(db: SQLiteDatabase?) {
 
-       /* db?.execSQL("create table IF NOT EXISTS player (idPlayer INTEGER primary key AUTOINCREMENT, name TEXT, points INTEGER)")
 
-        db?.execSQL("CREATE TABLE IF NOT EXISTS respuestas (id_respuesta INTEGER PRIMARY KEY AUTOINCREMENT, respuesta TEXT, puntos_necesarios INTEGER, img_respuesta TEXT)")
-
-        db?.execSQL("INSERT INTO respuestas (respuesta, puntos_necesarios, img_respuesta) VALUES ('tiger', 0, 'img11')")
-*/
 
         db?.execSQL("""
     CREATE TABLE IF NOT EXISTS player (
