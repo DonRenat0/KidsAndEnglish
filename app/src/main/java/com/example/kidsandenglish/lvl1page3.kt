@@ -41,6 +41,7 @@ class lvl1page3  : AppCompatActivity() {
                 val intent = Intent(this, lvl1page4::class.java)
                 intent.putExtra("nombreJugador", nombreJugador)
                 intent.putExtra("puntosJugador", puntosJugador)
+
                 startActivity(intent)
                 Log.d("Miapp", "$nombreJugador")
             }else{

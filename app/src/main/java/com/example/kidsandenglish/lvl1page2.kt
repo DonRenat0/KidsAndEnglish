@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class lvl1page2  : AppCompatActivity() {
     private lateinit var btnCheck12: Button
-    private lateinit var btnSvExit:Button
+    private lateinit var btnSvExit12:Button
     private lateinit var txtRespuestaUsuario: EditText
 
     private var nombreJugador: String? = null
@@ -34,10 +34,9 @@ class lvl1page2  : AppCompatActivity() {
         btnCheck12.setOnClickListener {
 
             var strRespuestaUsuario =  txtRespuestaUsuario.text.toString().trim().toLowerCase()
-            esCorrecta = verificarRespuesta(puntosJugador, strRespuestaUsuario)
+             esCorrecta = verificarRespuesta(puntosJugador, strRespuestaUsuario)
 
 
-            //No ha entrado en el true?????????
             if(esCorrecta == true){
                 Toast.makeText(this, "Correct! You got 1 point", Toast.LENGTH_LONG).show()
                 sumarPunto(nombreJugador)
@@ -51,8 +50,8 @@ class lvl1page2  : AppCompatActivity() {
                 Log.d("MiappFailed", "$nombreJugador")
             }
         }
-        btnSvExit= findViewById(R.id.btnSvExit12)
-        btnSvExit.setOnClickListener{
+        btnSvExit12= findViewById(R.id.btnSvExit12)
+        btnSvExit12.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }

@@ -38,6 +38,7 @@ class lvl1page1 : AppCompatActivity() {
     private lateinit var btnCheck11:Button
     private lateinit var btnSvExit:Button
     private lateinit var txtRespuestaUsuario: EditText
+
     private var nombreJugador: String? = null
     private var puntosJugador: Int? = null
    private var esCorrecta: Boolean? = false
