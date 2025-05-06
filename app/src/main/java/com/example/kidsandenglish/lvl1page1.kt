@@ -33,12 +33,10 @@ import androidx.appcompat.app.AppCompatActivity
 //  tocaria hacer la logica para poner la imagen en cada xml segun se avanza y hacer dinamicas las funciones que estan en todos los niveles
 
 class lvl1page1 : AppCompatActivity() {
-   // private var nombreJugador: String? = null
 
-   // private var puntos: Int? = null
+   // private var respuestaUsuario = findViewById<EditText>(R.id.editText11)
     private lateinit var btnCheck11:Button
     private lateinit var btnSvExit:Button
-   // private var respuestaUsuario = findViewById<EditText>(R.id.editText11)
     private lateinit var txtRespuestaUsuario: EditText
     private var nombreJugador: String? = null
     private var puntosJugador: Int? = null
@@ -66,10 +64,14 @@ class lvl1page1 : AppCompatActivity() {
             if(esCorrecta == true){
                     Toast.makeText(this, "Correct! You got 1 point", Toast.LENGTH_LONG).show()
                     sumarPunto(nombreJugador)
-                    Log.d("Miapp", "$nombreJugador")
+                    val intent = Intent(this, lvl1page2::class.java)
+                    intent.putExtra("nombreJugador", nombreJugador)
+                    intent.putExtra("puntosJugador", puntosJugador)
+                    startActivity(intent)
+                Log.d("Miapp", "$nombreJugador")
             }else{
                 Toast.makeText(this, "Invalid answer, \nhint: it starts with ti...", Toast.LENGTH_LONG).show()
-                Log.d("Miapp", "$nombreJugador")
+                Log.d("MiappFailed", "$nombreJugador")
             }
         }
         btnSvExit= findViewById(R.id.btnSvExit12)
@@ -80,33 +82,5 @@ class lvl1page1 : AppCompatActivity() {
     }
 
 
-     /* private fun sumarPunto() {
-        val conexion = SQLite(this, "player", null, 1)
-        val writebbdd = conexion.writableDatabase
-        val readbbdd = conexion.readableDatabase
-        //txtNewPlayer=findViewById(R.id.txtNewPlayer)
-        //nombreJugador = intent.getStringExtra("nombreJugador")
-       // val name = nombreJugador
-        val contentValues = ContentValues()
-        contentValues.put("points", obtenerPuntosActuales() + 1)
-        // Actualiza la columna "points" en la base de datos
-     //   baseDeDatos.update("player", contentValues, "name=?", arrayOf(nombreJugador))
-        baseDeDatos.close()
-    }*/
 
-    /*private fun obtenerPuntosActuales(): Int {
-        val conexion = SQLite(this, "player", null, 1)
-        val baseDeDatos = conexion.readableDatabase
-      //  nombreJugador = intent.getStringExtra("nombreJugador")
-        //val name = nombreJugador
-
-     //   val cursor = baseDeDatos.rawQuery("SELECT points FROM player WHERE name=?", arrayOf(nombreJugador))
-        var puntos = 0
-     /*   if (cursor.moveToFirst()) {
-            puntos = cursor.getInt(0)
-        }
-        cursor.close()*/
-        baseDeDatos.close()
-        return puntos
-    }*/
 }

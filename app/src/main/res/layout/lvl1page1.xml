@@ -87,8 +87,8 @@
 
     <TextView
         android:id="@+id/txtVwPoints"
-        android:layout_width="149dp"
-        android:layout_height="37dp"
+        android:layout_width="139dp"
+        android:layout_height="40dp"
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
