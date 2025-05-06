@@ -3,72 +3,57 @@ package com.example.kidsandenglish
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class lvl1page6  : AppCompatActivity() {
-    private var nombreJugador: String? = null
-    private lateinit var btnSvExit16:Button
     private lateinit var btnCheck16: Button
+    private lateinit var btnSvExit16: Button
+    private lateinit var txtRespuestaUsuario: EditText
+    private var nombreJugador: String? = null
+    private var puntosJugador: Int? = null
+    private var esCorrecta: Boolean? = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.lvl1page6)
+
+        txtRespuestaUsuario = findViewById(R.id.editText16)
         nombreJugador = intent.getStringExtra("nombreJugador")
-        btnCheck16= findViewById(R.id.btnCheck16)
+        puntosJugador = intent.getIntExtra("puntosJugador", 0)
+
+        // Muestra puntos en XML
+        mostrarPuntosEn(R.id.txtVwPoints6, nombreJugador)
+
+        btnCheck16 = findViewById(R.id.btnCheck16)
         btnCheck16.setOnClickListener {
-            verificarRespuesta()
+
+            var strRespuestaUsuario = txtRespuestaUsuario.text.toString().trim().toLowerCase()
+            esCorrecta = verificarRespuesta(puntosJugador, strRespuestaUsuario)
+
+            if (esCorrecta == true) {
+                Toast.makeText(this, "Correct! You got 1 point", Toast.LENGTH_LONG).show()
+                sumarPunto(nombreJugador)
+                val intent = Intent(this, lvl2page1::class.java)
+                intent.putExtra("nombreJugador", nombreJugador)
+                intent.putExtra("puntosJugador", puntosJugador)
+
+                startActivity(intent)
+                Log.d("Miapp", "$nombreJugador")
+            } else {
+                Toast.makeText(this, "Invalid answer, \nhint: it starts with ti...", Toast.LENGTH_LONG).show()
+                Log.d("MiappFailed", "$nombreJugador")
+            }
         }
-        btnSvExit16= findViewById(R.id.btnSvExit16)
-        btnSvExit16.setOnClickListener{
+
+        btnSvExit16 = findViewById(R.id.btnSvExit16)
+        btnSvExit16.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
-    /////
-    private fun verificarRespuesta() {
-        val editText: EditText = findViewById(R.id.editText16)
-        val respuestaUsuario = editText.text.toString().trim().toLowerCase()
-        if (respuestaUsuario == "elephant") {
-            sumarPunto()
-            Toast.makeText(this, "well done you got 1 point!", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, lvl2page1::class.java)
-            intent.putExtra("nombreJugador", nombreJugador)
 
-            startActivity(intent)
-
-        } else {
-            Toast.makeText(this, "Try again it starts for elep...", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun sumarPunto() {
-        val conexion = SQLite(this, "player", null, 1)
-        val baseDeDatos = conexion.writableDatabase
-        //txtNewPlayer=findViewById(R.id.txtNewPlayer)
-        nombreJugador = intent.getStringExtra("nombreJugador")
-        val name = nombreJugador
-        val contentValues = ContentValues()
-        contentValues.put("points", obtenerPuntosActuales() + 1)
-        // Actualiza la columna "points" en la base de datos
-        baseDeDatos.update("player", contentValues, "name=?", arrayOf(name))
-        baseDeDatos.close()
-    }
-
-    
-    private fun obtenerPuntosActuales(): Int {
-        val conexion = SQLite(this, "player", null, 1)
-        val baseDeDatos = conexion.readableDatabase
-        nombreJugador = intent.getStringExtra("nombreJugador")
-        val name = nombreJugador
-        val cursor = baseDeDatos.rawQuery("SELECT points FROM player WHERE name=?", arrayOf(name))
-        var puntos = 0
-        if (cursor.moveToFirst()) {
-            puntos = cursor.getInt(0)
-        }
-        cursor.close()
-        baseDeDatos.close()
-        return puntos
-    }
 }

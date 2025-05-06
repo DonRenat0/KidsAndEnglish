@@ -36,7 +36,7 @@ class lvl1page1 : AppCompatActivity() {
 
    // private var respuestaUsuario = findViewById<EditText>(R.id.editText11)
     private lateinit var btnCheck11:Button
-    private lateinit var btnSvExit:Button
+    private lateinit var btnSvExit11:Button
     private lateinit var txtRespuestaUsuario: EditText
 
     private var nombreJugador: String? = null
@@ -75,8 +75,8 @@ class lvl1page1 : AppCompatActivity() {
                 Log.d("MiappFailed", "$nombreJugador")
             }
         }
-        btnSvExit= findViewById(R.id.btnSvExit12)
-        btnSvExit.setOnClickListener{
+        btnSvExit11= findViewById(R.id.btnSvExit12)
+        btnSvExit11.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }

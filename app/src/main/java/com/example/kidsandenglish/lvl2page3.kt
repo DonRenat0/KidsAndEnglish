@@ -15,6 +15,7 @@ class lvl2page3  : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.lvl2page3)
+
         nombreJugador = intent.getStringExtra("nombreJugador")
         btnCheck23= findViewById(R.id.btnCheck23)
         btnCheck23.setOnClickListener {
