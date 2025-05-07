@@ -74,6 +74,7 @@ class selectPlayer  : AppCompatActivity() {
                     txtPlayerName.setText("")
                     intent.putExtra("nombreJugador", name)
                     startActivity(intent)
+                        finish()
                 }
                 }
 

@@ -69,6 +69,7 @@ class lvl1page1 : AppCompatActivity() {
                     intent.putExtra("nombreJugador", nombreJugador)
                     intent.putExtra("puntosJugador", puntosJugador)
                     startActivity(intent)
+                    finish()
                 Log.d("Miapp", "$nombreJugador")
             }else{
                 Toast.makeText(this, "Invalid answer, \nhint: it starts with ti...", Toast.LENGTH_LONG).show()

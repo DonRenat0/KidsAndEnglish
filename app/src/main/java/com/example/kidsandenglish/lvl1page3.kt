@@ -23,7 +23,7 @@ class lvl1page3  : AppCompatActivity() {
 
         txtRespuestaUsuario = findViewById(R.id.editText13)
         nombreJugador = intent.getStringExtra("nombreJugador")
-        puntosJugador = intent.getIntExtra("puntosJugador", 0)
+        puntosJugador = intent.getIntExtra("puntosJugador", 2)
 
 
         //  Muestra puntos en XML
@@ -43,6 +43,7 @@ class lvl1page3  : AppCompatActivity() {
                 intent.putExtra("puntosJugador", puntosJugador)
 
                 startActivity(intent)
+                finish()
                 Log.d("Miapp", "$nombreJugador")
             }else{
                 Toast.makeText(this, "Invalid answer, \nhint: it starts with ti...", Toast.LENGTH_LONG).show()
