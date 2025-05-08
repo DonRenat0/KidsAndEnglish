@@ -38,7 +38,7 @@ class lvl2page3  : AppCompatActivity() {
             if(esCorrecta == true){
                 Toast.makeText(this, "Correct! You got 1 point", Toast.LENGTH_LONG).show()
                 sumarPunto(nombreJugador)
-                val intent = Intent(this, lvl1page4::class.java)
+                val intent = Intent(this, lvl2page4::class.java)
                 intent.putExtra("nombreJugador", nombreJugador)
                 intent.putExtra("puntosJugador", puntosJugador)
 

@@ -9,7 +9,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-class lvl2page1  : AppCompatActivity() {
     class lvl2page1 : AppCompatActivity() {
 
         private lateinit var btnCheck21: Button
@@ -60,4 +59,3 @@ class lvl2page1  : AppCompatActivity() {
         }
     }
 
-}
