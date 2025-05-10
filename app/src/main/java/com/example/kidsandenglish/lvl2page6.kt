@@ -2,6 +2,7 @@ package com.example.kidsandenglish
 
 import android.content.ContentValues
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -37,19 +38,20 @@ class lvl2page6 : AppCompatActivity() {
 
             if (esCorrecta == true) {
                 Toast.makeText(this, "Correct! You got 1 point", Toast.LENGTH_LONG).show()
-                sumarPunto(nombreJugador)
-
-                // Ir al siguiente nivel o final
+                val puntosActualizados = sumarPunto(nombreJugador)
                 val intent = Intent(this, lvl3page1::class.java)
                 intent.putExtra("nombreJugador", nombreJugador)
-                intent.putExtra("puntosJugador", puntosJugador)
-
+                intent.putExtra("puntosJugador", puntosActualizados)
+                val mediaPlayer = MediaPlayer.create(this, R.raw.levelup_sound)
+                mediaPlayer.start()
                 startActivity(intent)
                 finish()
                 Log.d("Miapp", "$nombreJugador")
             } else {
                 Toast.makeText(this, "Invalid answer, \nhint: it starts with ...", Toast.LENGTH_LONG).show()
                 Log.d("MiappFailed", "$nombreJugador")
+                val mediaPlayer = MediaPlayer.create(this, R.raw.error_sound)
+                mediaPlayer.start()
             }
         }
 

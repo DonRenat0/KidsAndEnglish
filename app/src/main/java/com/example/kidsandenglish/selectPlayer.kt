@@ -47,7 +47,7 @@ class selectPlayer  : AppCompatActivity() {
                     var puntos = cursor.getInt(0)
 
                     if (puntos==18){
-                        Toast.makeText(this, "You already won this game bro go touch some grass!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "You already won this game, to keep learning, go to create a New Player!", Toast.LENGTH_LONG).show()
                     }else{
                     val intent = Intent(this, when (puntos) {
                         0 -> lvl1page1::class.java

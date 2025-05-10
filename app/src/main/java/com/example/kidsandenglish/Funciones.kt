@@ -24,7 +24,7 @@ fun AppCompatActivity.mostrarPuntosEn(textViewId: Int, nombreJugador: String?) {
         return existe
     }
 
-    fun AppCompatActivity.sumarPunto(nombreJugador: String?){
+    fun AppCompatActivity.sumarPunto(nombreJugador: String?): Int {
         val conexion = SQLite(this, "player", null, 1)
         val writebbdd = conexion.writableDatabase
         val readbbdd = conexion.readableDatabase
@@ -41,54 +41,8 @@ fun AppCompatActivity.mostrarPuntosEn(textViewId: Int, nombreJugador: String?) {
         writebbdd.update( "player", contentValues, "name=?", arrayOf(nombreJugador))
         writebbdd.close()
         readbbdd.close()
+        return puntos
     }
-
-fun AppCompatActivity.nextPage() {
-    // Lista de actividades (niveles)
-    val niveles = listOf(
-        // Nivel 1
-        lvl1page1::class.java,
-        lvl1page2::class.java,
-        lvl1page3::class.java,
-        lvl1page4::class.java,
-        lvl1page5::class.java,
-        lvl1page6::class.java,
-
-        // Nivel 2
-        lvl2page1::class.java,
-        lvl2page2::class.java,
-        lvl2page3::class.java,
-        lvl2page4::class.java,
-        lvl2page5::class.java,
-        lvl2page6::class.java,
-
-        // Nivel 3
-        lvl3page1::class.java,
-        lvl3page2::class.java,
-        lvl3page3::class.java,
-        lvl3page4::class.java,
-        lvl3page5::class.java
-    )
-
-
-    // Obtener SharedPreferences para leer el nivel actual
-    val prefs = getSharedPreferences("gameData", MODE_PRIVATE)
-    val nivelActual = prefs.getInt("nivelActual", 0)
-
-    // Obtener la actividad correspondiente
-    val siguienteNivel = niveles.getOrNull(nivelActual)
-
-    if (siguienteNivel != null) {
-        //  NO ME PIDE IMPORT INTENT PERO ERA LO QUE FALTABA
-        val intent = Intent(this, siguienteNivel)
-        startActivity(intent)
-    } else {
-        Toast.makeText(this, "¡No hay más niveles!", Toast.LENGTH_LONG).show()
-    }
-}
-
-
-
 
 /*
 

@@ -76,7 +76,7 @@ class SQLite(
 
       fun esRegistrada(puntosJugador: Int?, strRespuestaUsuario: String?): Boolean {
 
-          Log.d("sqlito", "$puntosJugador y $strRespuestaUsuario")
+          Log.d("esRegistrada", "$puntosJugador y $strRespuestaUsuario")
 
           if (puntosJugador == null || strRespuestaUsuario.isNullOrBlank()) return false
 
@@ -87,10 +87,10 @@ class SQLite(
               arrayOf(puntosJugador.toString(), strRespuestaUsuario.lowercase())
 
           )
-          Log.d("sqlito", "$cursor")
+          Log.d("esRegistrada", "$cursor")
 
           val existe = cursor.moveToFirst()
-          Log.d("sqlito", "$existe")
+          Log.d("esRegistrada", "$existe")
 
           cursor.close()
           db.close()
