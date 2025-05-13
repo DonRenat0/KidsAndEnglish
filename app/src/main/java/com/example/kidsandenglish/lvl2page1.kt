@@ -59,6 +59,8 @@ import androidx.appcompat.app.AppCompatActivity
             btnSvExit21.setOnClickListener {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                finish()
+
             }
         }
     }

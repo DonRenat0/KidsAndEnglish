@@ -58,6 +58,8 @@ class lvl1page6  : AppCompatActivity() {
         btnSvExit16.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
+
         }
     }
 

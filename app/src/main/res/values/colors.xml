@@ -2,4 +2,18 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="fondo">#124459</color>
+    <color name="amarillo">#DAA62E</color>
+    <color name="azul_principal">#1D6095</color>
+    <color name="azul_secundario">#5C8AB2</color>
+    <color name="rosa_pastel">#D2CEED</color>
+    <color name="plomo">#537285</color>
+    <color name="azul_claro">#5C8AB2</color>
+
+
+
+
+
+
+
 </resources>

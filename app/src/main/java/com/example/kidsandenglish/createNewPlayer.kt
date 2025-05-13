@@ -1,5 +1,6 @@
 package com.example.kidsandenglish
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
@@ -18,14 +19,23 @@ class createNewPlayer : AppCompatActivity() {
     //var conexion = SQLite(requireContext(), "player", null, 1)
     private lateinit var txtNewPlayer: EditText
     private lateinit var btnNewPlayer: Button
+    private lateinit var btnBackMenuC: Button
 
+    //@SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.createnewplayer)
 
         txtNewPlayer=findViewById(R.id.txtNewPlayer)
         btnNewPlayer=findViewById(R.id.btnNewPlayer)
+        btnBackMenuC=findViewById(R.id.btnToMenu)
 
+        btnBackMenuC.setOnClickListener{
+            val intent  =   Intent(this, MainActivity::class.java)
+            txtNewPlayer.setText("")
+            startActivity(intent)
+            finish()
+        }
         btnNewPlayer.setOnClickListener{
 
             //  1.

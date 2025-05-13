@@ -3,42 +3,103 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/fondo"
+    tools:ignore="ExtraText">
 
-    <TextView
-        android:id="@+id/playerList"
-        android:layout_width="314dp"
-        android:layout_height="390dp"
-        android:gravity="center_horizontal"
-        android:text="dfgdf"
+
+    <ListView
+        android:id="@+id/playerListView"
+        android:layout_width="411dp"
+        android:layout_height="399dp"
+        android:layout_weight="1"
+        android:background="#5C8AB2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.237" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnSelectName"
-        android:layout_width="156dp"
-        android:layout_height="50dp"
-        android:text="Select Player"
+        android:layout_width="243dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#5C8AB2"
+        android:text="Go To Play"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.932" />
+        app:layout_constraintVertical_bias="0.759" />
 
     <EditText
         android:id="@+id/txtPlayerName"
         android:layout_width="279dp"
         android:layout_height="49dp"
+        android:backgroundTint="@android:color/holo_blue_light"
         android:ems="10"
         android:hint="Name here!"
         android:inputType="text"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.818" />
+        app:layout_constraintVertical_bias="0.623" />
+
+    <Button
+        android:id="@+id/btnBackMenu"
+        android:layout_width="243dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#5C8AB2"
+        android:text="    Back to menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+    <LinearLayout
+        android:layout_width="30dp"
+        android:layout_height="28dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBackMenu"
+        app:layout_constraintEnd_toEndOf="@+id/btnBackMenu"
+        app:layout_constraintHorizontal_bias="0.085"
+        app:layout_constraintStart_toStartOf="@+id/btnBackMenu"
+        app:layout_constraintTop_toTopOf="@+id/btnBackMenu">
+
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_revert" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="243dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#5C8AB2"
+        android:text="Delete Player"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.835" />
+
+    <Button
+        android:id="@+id/btnChangeName"
+        android:layout_width="243dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#5C8AB2"
+        android:text="Change Player Name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.906" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

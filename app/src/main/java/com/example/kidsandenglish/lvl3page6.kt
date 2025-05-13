@@ -51,7 +51,7 @@ class lvl3page6 : AppCompatActivity() {
                 //intent.putExtra("puntosJugador", puntosActualizados)
                 val mediaPlayer = MediaPlayer.create(this, R.raw.cheers_1)
                 mediaPlayer.start()
-                showVictoryDialog()
+
 
                // startActivity(intent)
                 // finish()
@@ -61,7 +61,8 @@ class lvl3page6 : AppCompatActivity() {
                 Log.d("MiappFailed", "$nombreJugador")
                 val mediaPlayer = MediaPlayer.create(this, R.raw.error_sound)
                 mediaPlayer.start()
-
+                mediaPlayer.release()
+                mostrarVictoria()
             }
         }
 
@@ -69,29 +70,29 @@ class lvl3page6 : AppCompatActivity() {
         btnSvExit36.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
+
         }
     }
 
-    fun showVictoryDialog() {
+    fun mostrarVictoria() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_victory, null)
-        val dialog = AlertDialog.Builder(this)
-            .setView(dialogView)
-            .setCancelable(false)
-            .create()
 
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        val builder = AlertDialog.Builder(this)
+        builder.setView(dialogView)
+        builder.setCancelable(false) // No permite cerrar tocando fuera
+
+        val dialog = builder.create()
         dialog.show()
 
-        // Cierra automáticamente después de 5 segundos (opcional)
-        Handler(Looper.getMainLooper()).postDelayed({
+        val btnVolver = dialogView.findViewById<Button>(R.id.btnVolverMenu)
+        //dialogView.findViewById<Button>(R.id.btnVolverMenu)
+        btnVolver.setOnClickListener {
             dialog.dismiss()
-            // Tal vez ir al MainMenu o Reiniciar juego
-            startActivity(Intent(this, MainActivity::class.java))
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
             finish()
-        }, 20000)
-        startActivity(intent)
-         finish()
-
+        }
     }
 
 }
