@@ -1,6 +1,5 @@
 package com.example.kidsandenglish
 
-import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
@@ -10,18 +9,14 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-//  1.  Se debe hacer una clase de conexion para que no se repita en cada ClickListener
 
-//  2.  Llamada a la bbdd que compare la sql con cada registro de nombre(name en sqlite)
 
 class createNewPlayer : AppCompatActivity() {
 
-    //var conexion = SQLite(requireContext(), "player", null, 1)
     private lateinit var txtNewPlayer: EditText
     private lateinit var btnNewPlayer: Button
     private lateinit var btnBackMenuC: Button
 
-    //@SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.createnewplayer)
@@ -38,11 +33,11 @@ class createNewPlayer : AppCompatActivity() {
         }
         btnNewPlayer.setOnClickListener{
 
-            //  1.
             var conexion = SQLite(this, "player", null, 1)
 
             var baseDeDatos = conexion.writableDatabase
-            var name = txtNewPlayer.text.toString()
+            var name = txtNewPlayer.text.toString().replace("\\s+".toRegex(), "").lowercase()
+
             var points = 0
             if (name.isNotEmpty()){
                 if (!existeJugador(name, baseDeDatos)) {
@@ -62,10 +57,6 @@ class createNewPlayer : AppCompatActivity() {
 
                     startActivity(intent)
                     finish()
-
-                    // REEMPLAZAR LA ANTERIOR LOGICA EN TODAS LAS CLASES
-                    // Y HACER LA LLAMADA A NEXTPAGE()
-
                     baseDeDatos.close()
 
                 } else {
@@ -79,13 +70,10 @@ class createNewPlayer : AppCompatActivity() {
         }
     }
 
-
-
     // Función para verificar si un jugador ya existe con el mismo nombre
     private fun existeJugador(nombre: String, db: SQLiteDatabase): Boolean {
         val sql = "SELECT * FROM player WHERE name = ?"
 
-        //  2.
         val resultado = db.rawQuery(sql, arrayOf(nombre))
         val existe = resultado.count > 0
         resultado.close()

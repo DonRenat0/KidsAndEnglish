@@ -1,11 +1,9 @@
 package com.example.kidsandenglish
 
-import android.content.ContentValues
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -30,7 +28,6 @@ class lvl3page6 : AppCompatActivity() {
         nombreJugador = intent.getStringExtra("nombreJugador")
         puntosJugador = intent.getIntExtra("puntosJugador", 17)
 
-        // Muestra puntos en XML
         mostrarPuntosEn(R.id.txtVwPoints18, nombreJugador)
 
         btnCheck36 = findViewById(R.id.btnCheck36)
@@ -41,28 +38,20 @@ class lvl3page6 : AppCompatActivity() {
 
             if (esCorrecta == true) {
                 Toast.makeText(this, "Congratulations!! \n You won this game!", Toast.LENGTH_LONG).show()
-
-
                 val puntosActualizados = sumarPunto(nombreJugador)
 
                 // Puedes redirigir al siguiente nivel o mostrar una pantalla de finalización
-                val intent = Intent(this, MainActivity::class.java)
-                //intent.putExtra("nombreJugador", nombreJugador)
-                //intent.putExtra("puntosJugador", puntosActualizados)
+               // val intent = Intent(this, MainActivity::class.java
                 val mediaPlayer = MediaPlayer.create(this, R.raw.cheers_1)
                 mediaPlayer.start()
-
-
-               // startActivity(intent)
-                // finish()
+                mostrarVictoria()
                 Log.d("Miapp", "$nombreJugador")
             } else {
-                Toast.makeText(this, "Invalid answer, \nhint: it starts with ...", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Invalid answer, \nhint: it starts with black...", Toast.LENGTH_LONG).show()
                 Log.d("MiappFailed", "$nombreJugador")
                 val mediaPlayer = MediaPlayer.create(this, R.raw.error_sound)
                 mediaPlayer.start()
-                mediaPlayer.release()
-                mostrarVictoria()
+                //  mediaPlayer.release()
             }
         }
 
@@ -86,7 +75,6 @@ class lvl3page6 : AppCompatActivity() {
         dialog.show()
 
         val btnVolver = dialogView.findViewById<Button>(R.id.btnVolverMenu)
-        //dialogView.findViewById<Button>(R.id.btnVolverMenu)
         btnVolver.setOnClickListener {
             dialog.dismiss()
             val intent = Intent(this, MainActivity::class.java)
@@ -94,5 +82,9 @@ class lvl3page6 : AppCompatActivity() {
             finish()
         }
     }
+    override fun onBackPressed() {
+        // No hacer nada para bloquear el botón atrás
+    }
+
 
 }

@@ -1,6 +1,5 @@
 package com.example.kidsandenglish
 
-import android.content.ContentValues
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -26,7 +25,6 @@ class lvl3page5 : AppCompatActivity() {
         nombreJugador = intent.getStringExtra("nombreJugador")
         puntosJugador = intent.getIntExtra("puntosJugador", 16)
 
-        // Muestra puntos en XML
         mostrarPuntosEn(R.id.txtVwPoints17, nombreJugador)
 
         btnCheck35 = findViewById(R.id.btnCheck35)
@@ -47,7 +45,7 @@ class lvl3page5 : AppCompatActivity() {
                 finish()
                 Log.d("Miapp", "$nombreJugador")
             } else {
-                Toast.makeText(this, "Invalid answer, \nhint: it starts with ...", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Invalid answer, \nhint: it starts with water...", Toast.LENGTH_LONG).show()
                 Log.d("MiappFailed", "$nombreJugador")
                 val mediaPlayer = MediaPlayer.create(this, R.raw.error_sound)
                 mediaPlayer.start()
@@ -62,4 +60,8 @@ class lvl3page5 : AppCompatActivity() {
 
         }
     }
+    override fun onBackPressed() {
+        // No hacer nada para bloquear el botón atrás
+    }
+
 }

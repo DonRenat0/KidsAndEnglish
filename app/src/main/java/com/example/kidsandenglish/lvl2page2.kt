@@ -1,6 +1,5 @@
 package com.example.kidsandenglish
 
-import android.content.ContentValues
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -47,7 +46,7 @@ class lvl2page2  : AppCompatActivity() {
                 finish()
                 Log.d("Miapp", "$nombreJugador")
             } else {
-                Toast.makeText(this, "Invalid answer, \nhint: it starts with ...", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Invalid answer, \nhint: it starts with mi...", Toast.LENGTH_LONG).show()
                 Log.d("MiappFailed", "$nombreJugador")
                 val mediaPlayer = MediaPlayer.create(this, R.raw.error_sound)
                 mediaPlayer.start()

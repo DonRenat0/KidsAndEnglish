@@ -11,6 +11,7 @@
         android:layout_width="139dp"
         android:layout_height="40dp"
         android:text="TextView"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,14 +22,14 @@
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="268dp"
-        android:layout_height="240dp"
+        android:layout_width="280dp"
+        android:layout_height="253dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.217"
+        app:layout_constraintVertical_bias="0.268"
         app:srcCompat="@drawable/img12" />
 
     <TextView
@@ -68,17 +69,19 @@
         android:ems="10"
         android:hint="Enter animal name!"
         android:inputType="text"
+        android:text="dog"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.751"/>
+        app:layout_constraintVertical_bias="0.751" />
 
     <Button
         android:id="@+id/btnCheck12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#5C8AB2"
         android:text="CHECK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,6 +94,7 @@
         android:id="@+id/btnSvExit12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#5C8AB2"
         android:text="SAVE &amp; EXIT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

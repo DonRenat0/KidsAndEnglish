@@ -1,6 +1,5 @@
 package com.example.kidsandenglish
 
-import android.content.ContentValues
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -12,26 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 
-//  En este kt veras el problema que tiene el resto de niveles
-
-
-
-//  VerificarRespuesta:
-//  crear otra tabla con identificador y la respuesta a la imagen
-//  pasar el parametro de la entrada de respuesta y segun la cantidad de puntos te de el nombre de la
-//  imagen para comparar con la entrada.
-//
-//  Sumarpunto: Añade lo que esta en ObtenerPunto a esta funcion o mantenlos separados si lo haces
-//  funcional para todas los niveles
-
-//  database Inspector : View > Tool windows > App Inspector > Database Inspector
-// 20 veces mejor probar en movil
-
-//  In game debes matar el intent anterior o sino el player puede sumar puntos sin fin
-
-//  ME QUEDE en
-//  La TABLA con insercion de datos preocupa que sea una funcion, solo queremos que se ejecute una vez,incluso si alguien repite el juego
-//  tocaria hacer la logica para poner la imagen en cada xml segun se avanza y hacer dinamicas las funciones que estan en todos los niveles
 
 class lvl1page1 : AppCompatActivity() {
 
@@ -54,7 +33,6 @@ class lvl1page1 : AppCompatActivity() {
         puntosJugador = intent.getIntExtra("puntosJugador", 0)
 
 
-        //  Muestra puntos en XML
         mostrarPuntosEn(R.id.txtVwPoints, nombreJugador)
 
         btnCheck11= findViewById(R.id.btnCheck11)
@@ -90,6 +68,8 @@ class lvl1page1 : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+    override fun onBackPressed() {
     }
 
 

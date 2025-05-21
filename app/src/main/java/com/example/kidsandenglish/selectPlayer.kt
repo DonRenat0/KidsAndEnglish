@@ -34,19 +34,6 @@ class selectPlayer  : AppCompatActivity() {
         btnChangeName=findViewById(R.id.btnChangeName)
         btnDelete=findViewById(R.id.btnDelete)
 
-      /*  val conexion = SQLite(this, "player", null, 1)
-        val baseDeDatos = conexion.readableDatabase
-        val cursor = baseDeDatos.rawQuery("SELECT * FROM player ORDER BY points DESC", null)
-        val playersList = mutableListOf<String>()  // Lista de cadenas para almacenar los resultados
-        with(cursor) {
-            while (moveToNext()) {
-                val name = getString(1)
-                val points = getInt(2)
-                playersList.add("$name - $points puntos")
-            }
-        }
-        val text = playersList.joinToString("\n")
-        playerList.text = text*/
 
 ///////////////////////////////     LOGICA LIST VIEW
         playerListView = findViewById(R.id.playerListView)
@@ -72,7 +59,7 @@ class selectPlayer  : AppCompatActivity() {
             val playerName = selectedPlayer.substringBefore(" -").trim()  // Extrae solo el nombre
             txtPlayerName.setText(playerName)  // Coloca el nombre en el EditText
 
-            Toast.makeText(this, "Seleccionaste: $playerName", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, " $playerName selected", Toast.LENGTH_SHORT).show()
 
         }
 
@@ -199,37 +186,53 @@ class selectPlayer  : AppCompatActivity() {
             }
         }
         btnDelete.setOnClickListener{
-            val conexion = SQLite(this, "player", null, 1)
-            val baseDeDatos = conexion.writableDatabase
             val name = txtPlayerName.text.toString().trim().lowercase()
 
-            if (name.isNotEmpty() && existePlayer(name, baseDeDatos)) {
-                val rowsDeleted = baseDeDatos.delete("player", "name = ?", arrayOf(name))
-                if (rowsDeleted > 0) {
-                    Toast.makeText(this, "Player deleted successfully", Toast.LENGTH_SHORT).show()
-                    txtPlayerName.setText("")
-                    //Actualizar listView
-                    playersList2.clear()
-                    val cursor = baseDeDatos.rawQuery("SELECT * FROM player ORDER BY points DESC", null)
-                    with(cursor) {
-                        while (moveToNext()) {
-                            val name = getString(1)
-                            val points = getInt(2)
-                            playersList2.add("$name - $points puntos")
-                        }
-                    }
-                    cursor.close()
+            if (name.isNotEmpty()) {
+                val conexion = SQLite(this, "player", null, 1)
+                val baseDeDatos = conexion.writableDatabase
 
-                    // 3. Notificar al adapter
-                    adapter.notifyDataSetChanged()
+                if (existePlayer(name, baseDeDatos)) {
+                    // Mostrar confirmación antes de borrar
+                    AlertDialog.Builder(this)
+                        .setTitle("Delete Player")
+                        .setMessage("Are you sure you want to delete \"$name\"?")
+                        .setPositiveButton("Yes") { _, _ ->
+                            val rowsDeleted = baseDeDatos.delete("player", "name = ?", arrayOf(name))
+                            if (rowsDeleted > 0) {
+                                Toast.makeText(this, "Player deleted successfully", Toast.LENGTH_SHORT).show()
+                                txtPlayerName.setText("")
+
+                                // Actualizar listView
+                                playersList2.clear()
+                                val cursor = baseDeDatos.rawQuery("SELECT * FROM player ORDER BY points DESC", null)
+                                with(cursor) {
+                                    while (moveToNext()) {
+                                        val name = getString(1)
+                                        val points = getInt(2)
+                                        playersList2.add("$name - $points puntos")
+                                    }
+                                }
+                                cursor.close()
+                                adapter.notifyDataSetChanged()
+                            } else {
+                                Toast.makeText(this, "Error deleting player", Toast.LENGTH_SHORT).show()
+                            }
+                            baseDeDatos.close()
+                        }
+                        .setNegativeButton("No") { dialog, _ ->
+                            dialog.dismiss()
+                            baseDeDatos.close()
+                        }
+                        .setCancelable(false)
+                        .show()
                 } else {
-                    Toast.makeText(this, "Error deleting player", Toast.LENGTH_SHORT).show()
+                    baseDeDatos.close()
+                    Toast.makeText(this, "Player does not exist", Toast.LENGTH_LONG).show()
                 }
             } else {
-                Toast.makeText(this, "Enter a valid name or player does not exist", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Enter a valid name", Toast.LENGTH_LONG).show()
             }
-
-            baseDeDatos.close()
         }
     }
 

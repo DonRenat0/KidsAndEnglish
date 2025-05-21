@@ -1,6 +1,5 @@
 package com.example.kidsandenglish
 
-import android.content.ContentValues
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -29,12 +28,10 @@ class lvl1page2  : AppCompatActivity() {
         puntosJugador = intent.getIntExtra("puntosJugador", 1)
 
 
-        //  Muestra puntos en XML
         mostrarPuntosEn(R.id.txtVwPoints2, nombreJugador)
 
         btnCheck12= findViewById(R.id.btnCheck12)
         btnCheck12.setOnClickListener {
-//      Aqui cambiamos el to lower case
             var strRespuestaUsuario = txtRespuestaUsuario.text.toString().trim().lowercase(Locale.ROOT)
              esCorrecta = verificarRespuesta(puntosJugador, strRespuestaUsuario)
 
@@ -51,7 +48,7 @@ class lvl1page2  : AppCompatActivity() {
                 finish()
                 Log.d("Miapp", "$nombreJugador")
             }else{
-                Toast.makeText(this, "Invalid answer, \nhint: it starts with d...", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Invalid answer, \nhint: it starts with do...", Toast.LENGTH_LONG).show()
                 val mediaPlayer = MediaPlayer.create(this, R.raw.error_sound)
                 mediaPlayer.start()
                 Log.d("MiappFailed", "$nombreJugador")
@@ -64,6 +61,9 @@ class lvl1page2  : AppCompatActivity() {
             finish()
 
         }
+    }
+    override fun onBackPressed() {
+        // No hacer nada para bloquear el botón atrás
     }
 
 

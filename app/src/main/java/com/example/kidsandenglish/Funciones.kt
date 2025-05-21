@@ -1,13 +1,9 @@
 package com.example.kidsandenglish
 
 import android.content.ContentValues
-import android.content.Context.MODE_PRIVATE
 import android.util.Log
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import android.content.Intent
 
 
 
@@ -44,9 +40,4 @@ fun AppCompatActivity.mostrarPuntosEn(textViewId: Int, nombreJugador: String?) {
         return puntos
     }
 
-/*
 
-*
-*
-*
-**/

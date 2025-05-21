@@ -11,6 +11,7 @@
         android:layout_width="139dp"
         android:layout_height="40dp"
         android:text="TextView"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,17 +68,19 @@
         android:ems="10"
         android:hint="Enter animal name!"
         android:inputType="text"
+        android:text="parrot"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.751"/>
+        app:layout_constraintVertical_bias="0.751" />
 
     <Button
         android:id="@+id/btnCheck15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#5C8AB2"
         android:text="CHECK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,6 +93,7 @@
         android:id="@+id/btnSvExit15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#5C8AB2"
         android:text="SAVE &amp; EXIT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

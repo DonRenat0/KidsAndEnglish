@@ -93,7 +93,7 @@ class ranking  : AppCompatActivity() {
                     startActivity(intent)
 
 
-                    Toast.makeText(this, "Seleccionaste: $playerName", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "$playerName selected", Toast.LENGTH_SHORT).show()
 
                 }
 

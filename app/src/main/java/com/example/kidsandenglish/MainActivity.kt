@@ -64,9 +64,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnClose=findViewById(R.id.btnCloseApp)
-        btnClose.setOnClickListener{
-            finishAffinity()
+        btnClose.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Exit Game")
+            builder.setMessage("Are you sure you want to quit the game?")
+            builder.setPositiveButton("Yes") { _, _ ->
+                finishAffinity()
+            }
+            builder.setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+            builder.setCancelable(false)
+            builder.show()
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -92,7 +103,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun mostrarAboutItem() {
 
-        val message = SpannableString("App Project Kid and English was developed by Manuel Alejandro C.M.\n" +
+        val message = SpannableString("App Project Kids and English was developed by Alejandro C.M.\n" +
                 "Please visit my GitHub Account to watch all the process:\nhttps://github.com/DonRenat0\n\n" +
                 "Thanks for playing! 🎉")
 
