@@ -15,27 +15,27 @@ class SQLite(
 
     override fun onCreate(db: SQLiteDatabase?) {
 
-
-
-        db?.execSQL("""
-    CREATE TABLE IF NOT EXISTS player (
-        idPlayer INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        points INTEGER
-    )
-""")
+        db?.execSQL("PRAGMA foreign_keys = ON")
 
         db?.execSQL("""
     CREATE TABLE IF NOT EXISTS respuestas (
         id_respuesta INTEGER PRIMARY KEY AUTOINCREMENT,
-        respuesta TEXT,
-        puntos_necesarios INTEGER,
-        img_respuesta TEXT
+        respuesta TEXT NOT NULL,
+        puntos_necesarios INTEGER NOT NULL,
+        img_respuesta TEXT NOT NULL
     )
 """)
 
-// Inserción de registro inicial correctamente
+        db?.execSQL("""
+    CREATE TABLE IF NOT EXISTS player (
+        idPlayer INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        points INTEGER NOT NULL,
+        FOREIGN KEY (points) REFERENCES respuestas(puntos_necesarios)
+    )
+""")
 
+// Inserciones en la tabla respuestas
         db?.execSQL("""INSERT INTO respuestas (respuesta, puntos_necesarios, img_respuesta) VALUES ('tiger', 0, 'img11')""")
         db?.execSQL("""INSERT INTO respuestas (respuesta, puntos_necesarios, img_respuesta) VALUES ('dog', 1, 'img12')""")
         db?.execSQL("""INSERT INTO respuestas (respuesta, puntos_necesarios, img_respuesta) VALUES ('cow', 2, 'img13')""")
@@ -54,7 +54,6 @@ class SQLite(
         db?.execSQL("""INSERT INTO respuestas (respuesta, puntos_necesarios, img_respuesta) VALUES ('pineapple', 15, 'img34')""")
         db?.execSQL("""INSERT INTO respuestas (respuesta, puntos_necesarios, img_respuesta) VALUES ('watermelon', 16, 'img35')""")
         db?.execSQL("""INSERT INTO respuestas (respuesta, puntos_necesarios, img_respuesta) VALUES ('blackberry', 17, 'img36')""")
-
 
     }
 

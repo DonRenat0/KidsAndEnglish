@@ -28,6 +28,7 @@ class ranking  : AppCompatActivity() {
            finish()
         }
         /////////////////logica listView
+
        listViewRanking = findViewById(R.id.listViewRanking)
         val conexionTest = SQLite(this, "player", null, 1)
         val baseDeDatosTest = conexionTest.readableDatabase
